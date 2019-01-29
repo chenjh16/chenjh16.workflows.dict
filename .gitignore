@@ -1,0 +1,4 @@
+*.alfredworkflow
+old_*
+.DS_Store
+saveword.py
