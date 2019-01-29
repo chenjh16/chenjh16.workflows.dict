@@ -148,7 +148,14 @@ def get_web_data(query):
 def get_with_cache(query, callfunc, key=None, use_chche=True):
     def wrapper():
         return callfunc(query)
-    return wf.cached_data(key, wrapper, max_age=7776000) if use_chche else wrapper()
+    cquery = query.replace(' ', 'c') # any alphabet
+    cquery = cquery.replace('-', 'd') # any alphabet
+    cquery = cquery.replace('_', 'e') # any alphabet
+    if cquery.isalnum():
+        key = key.replace(' ', '}') # maybe better choice
+        return wf.cached_data(key, wrapper, max_age=7776000) if use_chche else wrapper()
+    else:
+        return wrapper()
 
 
 def add_translation(query, is_eng, rt):
