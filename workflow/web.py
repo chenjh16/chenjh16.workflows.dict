@@ -211,7 +211,11 @@ class Response(object):
 
         # Execute query
         try:
-            self.raw = urllib2.urlopen(request)
+            # fixme :  bypass verification, but how to validate the certificate 
+            # provided by the domain.
+            import ssl
+            context = ssl._create_unverified_context()
+            self.raw = urllib2.urlopen(request, context=context)
         except urllib2.HTTPError as err:
             self.error = err
             try:
