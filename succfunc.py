@@ -45,7 +45,13 @@ def succfunc(wf):
         if query[3]:
             bashCommand = "say --voice='Ting-Ting' " + query[3]
             os.system(bashCommand)
-
+    elif part == 3:
+        if query[2]:
+            bashCommand = "say --voice='Daniel' " + query[2]
+            os.system(bashCommand)
+        if query[3]:
+            bashCommand = "say --voice='Ting-Ting' " + query[3]
+            os.system(bashCommand)
 
 if __name__ == '__main__':
     sys.exit(wf.run(succfunc))

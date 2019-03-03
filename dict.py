@@ -223,7 +223,8 @@ def add_suggest_item(item):
     arg = '$%'.join(arg)
     item = wf.add_item(title=suggest, subtitle=explain, \
         autocomplete=suggest + QUERY_END, arg=arg)
-    item.add_modifier('alt', 'Press `return` to pronouncation.')
+    item.add_modifier('alt', 'Press `return` to pronouncation (US).')
+    item.add_modifier('cmd', 'Press `return` to pronouncation (UK).')
     item.add_modifier('ctrl', 'Press `return` to open web page.')
 
 

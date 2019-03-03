@@ -49,7 +49,17 @@
 				<key>modifiers</key>
 				<integer>524288</integer>
 				<key>modifiersubtext</key>
-				<string>Press `return` to pronunciation</string>
+				<string>Press `return` to pronunciation (US).</string>
+				<key>vitoclose</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>BA76F380-356A-4CFD-9AE1-B424470C622D</string>
+				<key>modifiers</key>
+				<integer>1048576</integer>
+				<key>modifiersubtext</key>
+				<string>Press `return` to pronunciation (UK).</string>
 				<key>vitoclose</key>
 				<true/>
 			</dict>
@@ -318,6 +328,29 @@
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>35</integer>
+				<key>script</key>
+				<string>/usr/bin/python succfunc.py "{query}" 3</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>BA76F380-356A-4CFD-9AE1-B424470C622D</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string>## Alfred Workflow Dict
@@ -327,8 +360,9 @@ A workflow of the online and offline cached dictionary for **Alfred 3**.
 ### Usage:
 
 - Start with `.` to look up a word.
-- Type `.>` to show the commands list.
-- Press `alt` and `return` to pronunciation.
+- Type `.>;` to show the commands list.
+- Press `alt` and `return` to pronunciation (US).
+- Press `cmd` and `return` to pronunciation (UK).
 - Tap `hotkey` to look up a word.
 - Select a word and tap `hotkey` to look up it.
 
@@ -351,56 +385,63 @@ This project is based on https://github.com/liszd/whyliam.workflows.youdao.</str
 			<key>xpos</key>
 			<integer>470</integer>
 			<key>ypos</key>
-			<integer>190</integer>
+			<integer>170</integer>
 		</dict>
 		<key>4473C9D3-7A15-4D31-84F6-A096A7CFF46C</key>
 		<dict>
 			<key>xpos</key>
 			<integer>470</integer>
 			<key>ypos</key>
-			<integer>330</integer>
+			<integer>310</integer>
 		</dict>
 		<key>6A03FDC5-89AC-4F9D-9456-3762ACA751FE</key>
 		<dict>
 			<key>xpos</key>
 			<integer>670</integer>
 			<key>ypos</key>
-			<integer>50</integer>
+			<integer>30</integer>
 		</dict>
 		<key>91C343E7-50D8-4B0D-9034-1C16C20DA8D4</key>
 		<dict>
 			<key>xpos</key>
 			<integer>250</integer>
 			<key>ypos</key>
-			<integer>190</integer>
+			<integer>170</integer>
+		</dict>
+		<key>BA76F380-356A-4CFD-9AE1-B424470C622D</key>
+		<dict>
+			<key>xpos</key>
+			<integer>470</integer>
+			<key>ypos</key>
+			<integer>450</integer>
 		</dict>
 		<key>DBA62127-3B78-4B80-B82B-1C6AEC393003</key>
 		<dict>
 			<key>xpos</key>
 			<integer>670</integer>
 			<key>ypos</key>
-			<integer>190</integer>
+			<integer>170</integer>
 		</dict>
 		<key>F0806996-1121-4673-A801-231860EA66A3</key>
 		<dict>
 			<key>xpos</key>
 			<integer>40</integer>
 			<key>ypos</key>
-			<integer>330</integer>
+			<integer>310</integer>
 		</dict>
 		<key>F90DBD96-A650-4261-ADBE-20110994AAC6</key>
 		<dict>
 			<key>xpos</key>
 			<integer>40</integer>
 			<key>ypos</key>
-			<integer>190</integer>
+			<integer>170</integer>
 		</dict>
 		<key>F99C4C55-10F5-4D62-A77D-F27058629B21</key>
 		<dict>
 			<key>xpos</key>
 			<integer>470</integer>
 			<key>ypos</key>
-			<integer>50</integer>
+			<integer>30</integer>
 		</dict>
 	</dict>
 	<key>variables</key>
@@ -428,7 +469,7 @@ This project is based on https://github.com/liszd/whyliam.workflows.youdao.</str
 		<string>zhiyun_key</string>
 	</array>
 	<key>version</key>
-	<string>1.0.2</string>
+	<string>1.0.3</string>
 	<key>webaddress</key>
 	<string>https://github.com/chenjh16/chenjh16.workflows.dict</string>
 </dict>
