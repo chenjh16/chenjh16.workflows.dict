@@ -145,7 +145,15 @@ def get_web_data(query):
         return rt
 
 
-def get_with_cache(query, callfunc, key=None, use_chche=True):
+def valid_web_date(wrapper, key, data):
+    errorCode = str(data.get("errorCode"))
+    if errorCode != "0":
+        data = wrapper()
+        wf.cache_data(key, data)
+    return data
+
+
+def get_with_cache(query, callfunc, valid_cache, key=None, use_chche=True):
     def wrapper():
         return callfunc(query)
     cquery = query.replace(' ', 'c') # any alphabet
@@ -153,7 +161,8 @@ def get_with_cache(query, callfunc, key=None, use_chche=True):
     cquery = cquery.replace('_', 'e') # any alphabet
     if cquery.isalnum():
         key = key.replace(' ', '}') # maybe better choice
-        return wf.cached_data(key, wrapper, max_age=7776000) if use_chche else wrapper()
+        ret = wf.cached_data(key, wrapper, max_age=7776000) if use_chche else wrapper()
+        return valid_cache(wrapper, key, ret)
     else:
         return wrapper()
 
@@ -250,9 +259,16 @@ def get_suggests(query):
     return res
 
 
+def valid_suggests(wrapper, key, data):
+    if not data:
+        data = wrapper()
+        wf.cache_data(key, data)
+    return data
+
+
 def add_explained_item(suggest, suggests_with_explains):
     simple_explains = ''
-    rt = get_with_cache(to_uni(suggest), get_web_data, to_uni(suggest), USE_CACHE)
+    rt = get_with_cache(to_uni(suggest), get_web_data, valid_web_date, to_uni(suggest), USE_CACHE)
     errorCode = str(rt.get("errorCode"))
     if errorCode == "0":
         if u'basic' in rt.keys():
@@ -336,7 +352,7 @@ def main(wf):
         if not isinstance(query, unicode):
             query = query.decode('utf8')
         
-        rt = get_with_cache(query, get_web_data, query, USE_CACHE)
+        rt = get_with_cache(query, get_web_data, valid_web_date, query, USE_CACHE)
         errorCode = str(rt.get("errorCode"))
 
         if ERRORCODE_DICT.has_key(errorCode):
@@ -363,7 +379,7 @@ def main(wf):
                 valid=True, icon=ICON_DEFAULT)
     else: # autocomplete
         query = query.strip()
-        suggests = get_with_cache(query, get_suggests, query + '}', USE_CACHE)
+        suggests = get_with_cache(query, get_suggests, valid_suggests, query + '}', USE_CACHE)
         if not len(suggests):
             suggests.append(query)
         explained_suggests = get_explained_suggests(suggests)
